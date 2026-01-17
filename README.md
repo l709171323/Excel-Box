@@ -1,23 +1,68 @@
-# Excel 工具箱 V2.3
+# Excel 工具箱
 
-功能强大的 Excel 批量处理工具，支持 SKU 填充、州名转换、仓库路由、PDF OCR、发货模板填充等多种实用功能。
+> 一款功能强大的 Excel 批量处理工具，专为电商和仓储管理设计。
 
-> 📢 **最新版本** (2025-12-12): 已完成打包优化，支持自定义图标，程序体积约 900MB（包含完整 OCR 引擎）
+[![Python Version](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![GUI](https://img.shields.io/badge/GUI-Tkinter-orange.svg)](https://docs.python.org/3/library/tkinter.html)
 
-## 核心功能
+---
 
-### 已实现功能（11个）
-1. **州名转换** - 美国州名与缩写互转
-2. **SKU 智能填充** - 自动填充匹配的 SKU 数据
-3. **高亮重复项** - 标注重复数据行
-4. **插入缺失行** - 按规则插入空白行
-5. **对比列数据** - 比较两列差异（支持忽略重复）
-6. **PDF OCR 拆分** - 拆分 PDF 并 OCR 识别订单号
-7. **前缀批量填充** - 为指定列添加前缀
-8. *（预留）*
-9. **仓库路由建议** - 基于距离推荐最优发货仓库
-10. **库存信息录入** - 管理仓库库存数据
-11. **发货模板填充** - 自动填充发货单模板
+## 功能概览
+
+本工具提供 **14 个实用功能模块**，覆盖 Excel 数据处理的常见需求：
+
+| 功能 | 描述 |
+|------|------|
+| 1️⃣ 州名转换 | 美国州全名与两字母缩写互转 |
+| 2️⃣ SKU 填充 | 根据数据库自动匹配并填充 SKU 信息 |
+| 3️⃣ 高亮重复 | 标记指定列中的重复数据行（黄色高亮） |
+| 4️⃣ 插入行 | 按 SKU 变化自动插入分隔行 |
+| 5️⃣ 对比列 | 比较两列数据差异，支持忽略重复项 |
+| 6️⃣ PDF 拆分 | 拆分 PDF 文件并 OCR 识别订单号 |
+| 7️⃣ 前缀填充 | 批量为指定列添加前缀 |
+| 8️⃣ 面单页脚 | 为 PDF 面单添加页脚信息 |
+| 9️⃣ 仓库路由 | 基于距离和库存推荐最优发货仓库 |
+| 🔟 库存录入 | 管理和编辑仓库库存信息 |
+| 1️⃣1️⃣ 模板填充 | 根据配置自动填充发货模板 |
+| 1️⃣2️⃣ PPT 转 PDF | 批量转换 PowerPoint 文件为 PDF |
+| 1️⃣3️⃣ 图片压缩 | 批量压缩图片文件 |
+| 1️⃣4️⃣ 删除列 | 批量删除 Excel 中的指定列 |
+
+---
+
+## 快速开始
+
+### 环境要求
+
+- Python 3.9 或更高版本
+- Windows 操作系统
+
+### 安装步骤
+
+```bash
+# 1. 克隆仓库
+git clone https://github.com/l709171323/Excel-Box.git
+cd Excel-Box
+
+# 2. 安装依赖
+pip install -r requirements.txt
+
+# 3. 运行程序
+python main.py
+```
+
+### 打包为 EXE
+
+```bash
+# 一键打包（默认配置）
+python build_exe.py
+
+# 精简版（不含 PaddleOCR，减小约 500MB）
+python build_exe.py --no-paddle
+```
+
+---
 
 ## 项目结构
 
@@ -44,255 +89,116 @@ Python-O/
     └── tesseract/         # OCR 引擎
 ```
 
-## 快速开始
+---
 
-### 方式1：直接使用（推荐）
+## 使用指南
 
-1. 解压 `Excel工具箱` 文件夹
-2. 双击运行 `Excel工具箱.exe`
-3. 无需安装任何依赖！
+### 基本操作流程
 
-### 方式2：开发环境
+1. 选择功能标签页
+2. 点击"浏览"选择输入文件
+3. 配置处理参数（列号、工作表等）
+4. 点击"开始处理"
+5. 查看日志输出
 
-**环境要求**：
-- Python 3.9+ (Windows)
-- 依赖包：见 `requirements.txt`
+### 注意事项
 
-**安装依赖**：
-```bash
-pip install -r requirements.txt
-```
-
-**运行程序**：
-```bash
-python main.py
-```
-
-## 打包发布
-
-### 一键打包（推荐）
-
-```bash
-python build_exe.py
-```
-
-**打包选项**：
-- `--onefile` - 打包成单个 EXE（启动慢，约 1GB）
-- `--debug` - 显示控制台窗口（用于调试）
-- `--no-paddle` - 排除 PaddleOCR（减小体积约 500MB）
-
-**默认配置**：
-- 模式：文件夹模式（快速启动）
-- 输出：`dist/Excel工具箱/`
-- 图标：`icon.ico`（自动应用）
-- 大小：约 900MB（包含所有依赖）
-
-### 更换图标
-
-1. 准备 `.ico` 格式图标文件
-2. 重命名为 `icon.ico`
-3. 放到项目根目录
-4. 重新运行 `python build_exe.py`
-
-**ICO 文件制作**：
-- 在线转换：https://www.icoconverter.com/
-- 推荐尺寸：256x256、128x128、64x64、48x48、32x32、16x16
-
-# 使用说明
-
-### 通用注意事项
-
-⚠️ **重要**：
-- 处理前请**关闭所有 Excel 文件**（避免保存失败）
-- 文件路径不要包含特殊字符
-- 建议先备份重要文件
-
-### 操作流程
-
-1. **选择功能标签页**（如"SKU填充"、"仓库路由"等）
-2. **选择输入文件**（点击"浏览"按钮）
-3. **配置参数**（列号、工作表名等）
-4. **点击"开始处理"**
-5. **查看日志**（界面内实时显示）
-6. **完成提示**（弹窗显示结果）
-
-### 功能9：仓库路由建议
-
-**功能说明**：根据 SKU 库存和距离，智能推荐最优发货仓库
-
-**库存文件格式**：
-- Sheet `仓库名和地址`：
-  - A列：仓库名称
-  - B列：所在州（全称或缩写）
-- 其他 Sheet：以仓库名称命名
-  - A列：SKU 列表
-
-**计算逻辑**：
-1. 按 SKU 筛选可用仓库
-2. 计算收件州与仓库州的距离（哈弗辛公式）
-3. 选择最近的仓库
-
-**特殊功能**：
-- 屏蔽州：勾选后 GA/TX 不参与计算
-- 日志可视化：表格展示仓库/州/SKU 信息
-
-### 功能10：库存信息录入
-
-- 在界面内录入仓库、州和 SKU
-- 保存为标准库存文件（符合功能9格式）
-- 支持导入现有库存文件编辑
-- 自动同步到功能9
-
-### 功能11：发货模板填充
-
-**功能说明**：根据订单信息自动填充发货模板
-
-**配置文件格式**（Excel）：
-- Sheet1（映射1）：订单列 → 模板列
-- Sheet2（映射2）：订单列 → 模板列（可选）
-- 其他 Sheet：仓库承运商映射
-  - A列：承运商
-  - B列：物流渠道
-
-**使用步骤**：
-1. 准备配置文件（映射关系）
-2. 选择订单文件和模板文件
-3. 选择使用映射1或映射2
-4. 可选：筛选指定仓库
-5. 开始填充
-
-### 功能6：PDF OCR 拆分
-
-**功能说明**：将多页 PDF 拆分，并 OCR 识别订单号重命名
-
-**使用方法**（GUI 界面）：
-1. 选择输入 PDF 文件
-2. 选择输出目录
-3. 设置 OCR 识别区域（左/上/宽/高）
-4. 可选：设置订单号正则表达式
-5. 开始处理
-
-**依赖说明**：
-- 程序已内置 Tesseract OCR 和 Poppler
-- 如需手动配置，在界面中指定路径：
-  - Poppler bin：`vendor/poppler/bin`
-  - Tesseract exe：`vendor/tesseract/tesseract.exe`
-
-**坐标说明**：
-- 使用像素坐标 `x,y,width,height`
-- 原点在左上角
-- DPI 通常设置为 300
-
-**输出规则**：
-- 每页生成一个独立 PDF
-- 文件名优先使用 OCR 识别的订单号
-- 识别失败则使用 `page_001.pdf` 格式
-
-## 技术说明
-
-### 依赖管理
-
-**第三方依赖**（已集成到打包程序）：
-- **Poppler**：PDF 处理引擎
-  - 位置：`vendor/poppler/bin`
-  - 自动检测路径
-- **Tesseract OCR**：文字识别引擎
-  - 位置：`vendor/tesseract/`
-  - 包含完整 `tessdata` 语言包
-- **PaddleOCR**：高级 OCR 引擎（可选）
-  - 体积约 500MB
-  - 打包时可用 `--no-paddle` 排除
-
-**Python 依赖**：
-```txt
-openpyxl>=3.1.0
-pytesseract>=0.3.10
-pdf2image>=1.16.0
-pypdf>=3.0.0
-pillow>=10.0.0
-paddleocr>=2.7.0  # 可选
-```
-
-### 数据库说明
-
-⚠️ **重要**：本项目**不使用数据库**！
-- 所有数据基于 Excel 文件处理
-- 配置通过 Excel 文件管理
-- 无需安装数据库软件
-
-### 体积优化
-
-**完整版**（约 900MB）：
-- 包含 PaddleOCR
-- 包含 Tesseract
-- 包含 Poppler
-
-**精简版**（约 400MB）：
-- 排除 PaddleOCR
-- 保留 Tesseract（基础 OCR）
-- 保留 Poppler（PDF 处理）
-
-**打包精简版**：
-```bash
-python build_exe.py --no-paddle
-```
-
-## 版本历史
-
-### V2.3 (2025-12-12)
-- ✅ 完成打包优化
-- ✅ 支持自定义图标
-- ✅ 移除数据库依赖
-- ✅ 清理冗余代码和文档
-- ✅ 优化程序启动速度
-
-### V2.0 (2025-11)
-- ✅ 模块化重构
-- ✅ 新增功能6-11
-- ✅ 集成 OCR 引擎
-- ✅ UI 优化
-
-### V1.1 (2025初)
-- ✅ 基础功能实现（1-5）
-- ✅ 首个稳定版本
-
-## 常见问题
-
-**Q: 程序启动慢？**
-A: 首次启动需要加载 OCR 引擎，约 10-30 秒。建议使用文件夹模式打包（默认）而非单文件模式。
-
-**Q: 找不到依赖？**
-A: 确保 `vendor/` 目录与 EXE 在同一位置。打包后整个文件夹一起分发。
-
-**Q: Excel 保存失败？**
-A: 关闭所有正在使用的 Excel 文件，确保文件未被占用。
-
-**Q: 如何更换图标？**
-A: 准备 `.ico` 文件，重命名为 `icon.ico`，放到项目根目录，重新运行 `python build_exe.py`。
-
-**Q: 打包文件太大？**
-A: 使用 `python build_exe.py --no-paddle` 排除 PaddleOCR，可减小约 500MB。
-
-## 开发者信息
-
-**技术栈**：
-- Python 3.11
-- Tkinter (GUI)
-- OpenPyXL (Excel 处理)
-- PyInstaller (打包)
-- Tesseract/PaddleOCR (文字识别)
-- Poppler (PDF 处理)
-
-**贡献指南**：
-1. Fork 本项目
-2. 创建功能分支
-3. 提交代码
-4. 发起 Pull Request
-
-## 许可证
-
-MIT License
+> ⚠️ **处理前请关闭所有 Excel 文件，避免保存失败**
 
 ---
 
-**最后更新**：2025-12-12
+## 核心功能详解
+
+### 功能 2：SKU 填充
+
+根据 SKU 数据库自动匹配并填充产品信息。
+
+**支持的数据源**：
+- Excel 数据库文件（SKU编号、产品名称、规格等）
+
+### 功能 6：PDF 拆分 + OCR
+
+将多页 PDF 拆分为单页文件，并自动 OCR 识别订单号重命名。
+
+**依赖组件**：
+- Tesseract OCR（已内置）
+- Poppler（已内置）
+
+### 功能 9：仓库路由
+
+基于地理距离和 SKU 库存，智能推荐最优发货仓库。
+
+**计算逻辑**：
+1. 筛选有库存的仓库
+2. 计算收件地址到各仓库的距离
+3. 推荐最近且有货的仓库
+
+---
+
+## 技术栈
+
+| 组件 | 用途 |
+|------|------|
+| Python 3.9+ | 核心语言 |
+| Tkinter | 图形界面 |
+| OpenPyXL | Excel 文件处理 |
+| PyPDF2/pdf2image | PDF 处理 |
+| Tesseract OCR | 文字识别 |
+| PyInstaller | EXE 打包 |
+
+---
+
+## 常见问题
+
+<details>
+<summary><b>Q: 程序启动慢？</b></summary>
+
+首次启动需要加载 OCR 引擎，约 10-30 秒。这是正常现象。
+</details>
+
+<details>
+<summary><b>Q: Excel 保存失败？</b></summary>
+
+请确保关闭所有正在使用的 Excel 文件，避免文件被占用。
+</details>
+
+<details>
+<summary><b>Q: 如何更换程序图标？</b></summary>
+
+准备 `.ico` 格式图标文件，重命名为 `icon.ico`，放到项目根目录后重新打包。
+</details>
+
+<details>
+<summary><b>Q: 打包文件太大？</b></summary>
+
+使用 `python build_exe.py --no-paddle` 可排除 PaddleOCR，减小约 500MB 体积。
+</details>
+
+---
+
+## 贡献
+
+欢迎提交 Issue 和 Pull Request！
+
+1. Fork 本仓库
+2. 创建功能分支 (`git checkout -b feature/AmazingFeature`)
+3. 提交更改 (`git commit -m 'Add some AmazingFeature'`)
+4. 推送到分支 (`git push origin feature/AmazingFeature`)
+5. 开启 Pull Request
+
+---
+
+## 许可证
+
+本项目采用 MIT 许可证 - 详见 [LICENSE](LICENSE) 文件
+
+---
+
+## 联系方式
+
+- GitHub: [@l709171323](https://github.com/l709171323)
+- 仓库地址: [https://github.com/l709171323/Excel-Box](https://github.com/l709171323/Excel-Box)
+
+---
+
+⭐ 如果这个项目对你有帮助，请给个 Star！
