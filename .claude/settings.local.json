@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python:*)",
+      "Bash(d:/Users/l7091/Desktop/Python-O/.venv/Scripts/pip.exe install:*)",
+      "Bash(d:/Users/l7091/Desktop/Python-O/.venv/Scripts/pip.exe:*)",
+      "Bash(d:/Users/l7091/Desktop/Python-O/.venv/Scripts/python.exe -c \"import flet as ft; print\\(''Flet version:'', ft.__version__\\); print\\(''Flet module loaded successfully''\\)\")",
+      "Bash(tasklist:*)",
+      "Bash(findstr:*)",
+      "Bash(d:/Usersl7091/Desktop/Python-O/.venv/Scripts/python.exe test_flet.py)",
+      "Bash(dir \"C:\\\\Users\\\\l7091\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\D--Users\\\\l7091\\\\Desktop\\\\Python-O\\\\tasks\"\" 2>nul | findstr \"bf\" || echo \"No task files found \")",
+      "Bash(d:/Users/l7091/Desktop/Python-O/.venv/Scripts/python.exe:*)"
+    ]
+  }
+}

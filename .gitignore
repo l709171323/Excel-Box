@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# PyInstaller
+build/
+dist/
+*.spec
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Project specific
+config.json
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Excel temporary files
+~$*.xlsx
+~$*.xlsm
+
+# Test outputs
+test_output/
+*.pdf.bak
